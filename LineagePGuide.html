@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unofficial LineageOS Pixel Guide</title>
+</head>
+<body>
+  <h1>Welcome!</h1>
+  <p>This is an unofficial guide to install Lineage OS on a Pixel device.</p>
+  <p>If there are any mistakes in this guide, please make a PR.</p>
+  <p><strong>guide written by ben</strong></p>
+
+  <h2>! NOTICE !</h2>
+  <h3>this is a guide for Windows users. I advise you to get a hold of a windows PC to continue.</h3>
+
+  <h2>1. Unlocking Bootloader</h2>
+
+  <h4>!!! WARNING !!!</h4>
+  <p>Unlocking your Bootloader WILL erase all of your data and may void your warranty. Be sure to back up anything you have on your device before beginning.</p>
+
+  <h3>a) Preparing device</h3>
+  <p>Go to Settings &gt; About &gt; Build number (tap it 7 times).</p>
+  <p>Then go to Settings &gt; system &gt; Developer options</p>
+  <p>Enable these:</p>
+  <ul>
+    <li>OEM Unlocking</li>
+    <li>USB debugging</li>
+  </ul>
+  <p>Go to settings &gt; passwords And accounts &gt; remove all Google accounts</p>
+
+  <h3>b) Downloading ADB/Fastboot commands and Google USB drivers</h3>
+  <p>OPTIONAL: You can make a folder somewhere on your PC and store all of these files on it.</p>
+  <p>Visit this <a href="https://developer.android.com/studio/run/win-usb">Link</a> and download the Google USB driver ZIP file.</p>
+  <p>Visit this link to download ADB/Fastboot commands (SDK platform tools for Windows): <a href="https://developer.android.com/tools/releases/platform-tools">Link</a></p>
+  <p>Save both ZIPs to your preferred location on your PC.</p>
+
+  <h3>c) Setup</h3>
+  <p>Unzip the Google USB driver and run installer. After installing drivers it is safe to delete installer since you won't need it anymore.</p>
+  <p>Unzip the SDK platform tools for Windows.</p>
+
+  <h3>d) Start Unlock process</h3>
+  <p>Power off your Pixel and hold Power button + Volume down to go into Fastboot mode. Once done, plug in the Pixel into the PC.</p>
+  <p>Go to <code>platform-tools</code> folder and Click on searchbar then type <code>CMD</code>. A Command Prompt window should appear.</p>
+  <p>In the CMD window, type these commands in ORDER:</p>
+
+  <pre><code>fastboot devices</code></pre>
+
+  <pre><code>fastboot flashing unlock</code></pre>
+
+  <p>On the Pixel, use Volume buttons to choose option <em>Unlock the bootloader</em> and press Power.</p>
+  <p>Once done, you can press Power to boot the device. You will boot onto setup. Don't sign in with Google account.</p>
+
+  <h2>2. Downloading Files</h2>
+
+  <h3>a) ROM and .img</h3>
+  <h4>!!! WARNING 2 !!!</h4>
+  <p>You MUST put the LineageOS ROM and all of the provided .img files in the <code>platform-tools</code> folder for the flashing to work later.</p>
+
+  <h4>Pixel 7:</h4>
+  <p>For the Pixel 7 series, we will be needing the LineageOS zip as well as 4 img files:</p>
+  <ul>
+    <li>Lineage OS (Download links are below)</li>
+    <li>boot.img</li>
+    <li>dtbo.img</li>
+    <li>vendor_kernel_boot.img</li>
+    <li>vendor_boot.img</li>
+  </ul>
+
+  <h4>Pixel 6:</h4>
+  <p>For the Pixel 6 series, we will be needing the LineageOS zip as well as 3 img files:</p>
+  <ul>
+    <li>Lineage OS (Download links are below)</li>
+    <li>boot.img</li>
+    <li>dtbo.img</li>
+    <li>vendor_boot.img</li>
+  </ul>
+
+  <h4>Pixel 5:</h4>
+  <p>For the Pixel 5 series, we will be needing the LineageOS zip as well as 3 img files:</p>
+  <ul>
+    <li>Lineage OS (Download links are below)</li>
+    <li>boot.img</li>
+    <li>dtbo.img</li>
+    <li>vendor_boot.img</li>
+  </ul>
+
+  <h4>Links:</h4>
+  <ul>
+    <li>Pixel 7: <a href="https://download.lineageos.org/devices/panther/builds">Link</a></li>
+    <li>Pixel 7 pro: <a href="https://download.lineageos.org/devices/cheetah/builds">Link</a></li>
+    <li>Pixel 7a: <a href="https://download.lineageos.org/devices/lynx/builds">Link</a></li>
+    <li>Pixel 6: <a href="https://download.lineageos.org/devices/oriole/builds">Link</a></li>
+    <li>Pixel 6 pro: <a href="https://download.lineageos.org/devices/raven/builds">Link</a></li>
+    <li>Pixel 6a: <a href="https://download.lineageos.org/devices/bluejay/builds">Link</a></li>
+    <li>Pixel 5: <a href="https://download.lineageos.org/devices/redfin/builds">Link</a></li>
+    <li>Pixel 5a: <a href="https://download.lineageos.org/devices/barbet/builds">Link</a></li>
+  </ul>
+
+  <h3>b) Google Apps/Services (Gapps)</h3>
+  <h4>!!! WARNING 3 !!!</h4>
+  <p>It is very important you download Arm64 version or else you will get errors.</p>
+  <p>We will flash the Gapps right after flashing the OS later.</p>
+  <p>Download Gapps: <a href="https://androidfilehost.com/?w=files&amp;flid=322935&amp;sort_by=date&amp;sort_dir=DESC">Link</a></p>
+
+  <h2>3. Flashing</h2>
+
+  <h3>a) Partitions</h3>
+  <p>We will start by flashing the .img files.</p>
+  <p>Since we reset the device by unlocking the bootloader, we will have to do the same steps in developer options:</p>
+  <p>Go to Settings &gt; About &gt; Build number (tap it 7 times).</p>
+  <p>Then go to Settings &gt; system &gt; Developer options</p>
+  <p>Enable these:</p>
+  <ul>
+    <li>OEM Unlocking</li>
+    <li>USB debugging</li>
+  </ul>
+  <p>Go to <code>platform-tools</code> folder and Click on searchbar then type <code>CMD</code>. A Command Prompt window should appear.</p>
+  <p>In the CMD window, type these commands in ORDER:</p>
+
+  <pre><code>adb devices</code></pre>
+
+  <pre><code>adb reboot bootloader</code></pre>
+
+  <pre><code>fastboot devices</code></pre>
+
+  <p>This might show a popup on your Pixel asking you to let you use your PC to debug. Just click Allow.</p>
+  <p>If it shows a string of numbers and letters with the word <code>unauthorized</code>, Allow the popup on your phone first.</p>
+
+  <pre><code>fastboot flash boot boot.img</code></pre>
+
+  <pre><code>fastboot flash dtbo dtbo.img</code></pre>
+
+  <pre><code>fastboot flash vendor_kernel_boot vendor_kernel_boot.img</code></pre>
+
+  <pre><code>fastboot flash vendor_boot vendor_boot.img</code></pre>
+
+  <h4>Pixel 6:</h4>
+  <pre><code>fastboot flash boot boot.img</code></pre>
+
+  <pre><code>fastboot flash dtbo dtbo.img</code></pre>
+
+  <pre><code>fastboot flash vendor_boot vendor_boot.img</code></pre>
+
+  <h4>Pixel 5:</h4>
+  <pre><code>fastboot flash boot boot.img</code></pre>
+
+  <pre><code>fastboot flash dtbo dtbo.img</code></pre>
+
+  <pre><code>fastboot flash vendor_boot vendor_boot.img</code></pre>
+
+  <h3>b) Operating system</h3>
+  <p>This is the section of the tutorial where we flash the LineageOS ZIP file onto the Pixel. The phone MUST stay plugged into the PC until we're done with flashing.</p>
+  <p>While in fastboot mode, select either Volume Up or Volume Down to select recovery mode. Once selected, select Power to boot into recovery. You should boot into the custom Lineage OS recovery menu.</p>
+  <p>In the recovery mode, use the Volume keys or the touch screen to navigate and select <em>Factory Reset</em> &gt; <em>Format Data</em> to remove the existing android Operating system.</p>
+  <p>Once done head over to <em>Apply update</em> &gt; <em>Apply from ADB</em>.</p>
+  <p>MAKE SURE YOU HAVE THE LINEAGEOS AND GAPPS ZIP FILE IN THE SAME DIRECTORY AS <code>platform-tools</code> TO SIDELOAD AND FLASH.</p>
+  <p>Now head over to the CMD window open on your computer and type this command:</p>
+
+  <pre><code>adb sideload [LINEAGE OS ZIPFILE NAME].zip</code></pre>
+
+  <p>Replace <code>[LINEAGEOS ZIPFILE NAME]</code> with the name of the LineageOS zip file.</p>
+  <p>Wait for it to flash.</p>
+
+  <h3>c) GAPPS</h3>
+  <p>Once the OS has been successfully flashed we can now finish it up by flashing the GAPPS.</p>
+  <p>Now head over to the CMD window open on your computer and type this command:</p>
+  
+  <pre><code>adb sideload [GAPPS ZIPFILE NAME].zip</code></pre>
+
+  <p>Replace <code>[GAPPS ZIPFILE NAME]</code> with the name of the LineageOS zip file.</p>
+  <p>The screen will show an error indicating that the Signature Verification Failed, just hit Yes/continue.</p>
+  <p>Once done you can exit out of <em>Apply Update</em> and select <em>Reboot System Now</em>.</p>
+
+  <h2>CONGRATS! 🎉</h2>
+  <h3>You have installed Lineage OS. If you encounter any errors, consider getting support from the Official Discord server.</h3>
+  <p><a href="https://discord.com/invite/gD6DMtf">https://discord.com/invite/gD6DMtf</a></p>
+
+  <p>&copy; 2016 - 2023 The LineageOS Project</p>
+  <p>LineageOS LLC is not a 501(c)(3) non-profit, as such donations are not tax-exempt.</p>
+  <p>Unofficial Pixel guide by Ben.</p>
+</body>
+</html>
